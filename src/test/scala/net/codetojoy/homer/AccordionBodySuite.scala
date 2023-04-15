@@ -24,6 +24,6 @@ class AccordionBodySuite extends AnyFunSuite {
         // test
         val actualHtml = accordionBody.build(links)
 
-        assert(actualHtml == "hello")
+        assert(expectedHtml.trim() == actualHtml.trim())
     }
 }

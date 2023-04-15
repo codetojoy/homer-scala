@@ -1,0 +1,24 @@
+
+apply plugin: 'scala' 
+apply plugin: 'application'
+
+mainClassName = 'net.codetojoy.homer.Main'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.scala-lang:scala3-library_3:3.2.2'
+
+    testImplementation 'junit:junit:4.13.1' 
+    testImplementation 'org.scalatest:scalatest_3:3.2.9'
+    testImplementation 'org.scalatestplus:junit-4-13_3:3.2.9.0'
+}
+
+test {
+    testLogging {
+        events "passed", "failed"
+    }
+}
+

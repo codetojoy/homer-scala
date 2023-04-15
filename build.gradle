@@ -1,4 +1,10 @@
 
+/*
+plugins {
+  id "com.github.maiflai.scalatest" version "0.32"
+}
+*/
+
 apply plugin: 'scala' 
 apply plugin: 'application'
 
@@ -15,6 +21,7 @@ dependencies {
     testImplementation 'org.scalatest:scalatest_3:3.2.9'
     testImplementation 'org.scalatestplus:junit-4-13_3:3.2.9.0'
 }
+
 
 test {
     testLogging {

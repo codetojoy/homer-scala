@@ -1,5 +1,10 @@
 
 package net.codetojoy.homer
 
-class AccordionBody {    
+import net.codetojoy.homer.model.Links
+
+class AccordionBody {
+    def build(links: Links):String =
+        return "hello"
+    end build
 }

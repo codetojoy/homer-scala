@@ -22,3 +22,6 @@ test {
     }
 }
 
+run {
+    args = ["./links.txt", "./src/main/resources/homer.properties"]
+}

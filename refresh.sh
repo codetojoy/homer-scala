@@ -2,5 +2,4 @@
 
 set -e
 
-./gradlew test 
-
+sbt run 

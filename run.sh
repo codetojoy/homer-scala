@@ -2,4 +2,4 @@
 
 set -e
 
-./gradlew clean run 
+sbt run 

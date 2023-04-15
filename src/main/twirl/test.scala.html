@@ -1,0 +1,14 @@
+@import net.codetojoy.homer.model.HomerModel 
+
+@(model: HomerModel)
+
+<html>
+  <body>
+    <h3><a href="#">@model.links.header</a></h3>
+    <div>
+      @for(link <- model.links.links) {
+      <a class="link" href="@link.href">@link.name</a> <br />
+      }
+    </div>
+  </body>
+</html>

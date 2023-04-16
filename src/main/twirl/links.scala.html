@@ -3,10 +3,12 @@
 @(model: HomerModel)
 
 @main {
-<h3><a href="#">@model.links.header</a></h3>
-<div>
-  @for(link <- model.links.links) {
-      <a class="link" href="@link.href">@link.name</a> <br />
-  }
-</div>
+    @for(thisLinkGroup <- model.linksList) {
+        <h3><a href="#">@thisLinkGroup.header</a></h3>
+        <div>
+        @for(link <- thisLinkGroup.links) {
+            <a class="link" href="@link.href">@link.name</a> <br />
+        }
+        </div>
+    }
 }

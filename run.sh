@@ -2,4 +2,4 @@
 
 set -e
 
-sbt run 
+sbt "run ./links.txt"

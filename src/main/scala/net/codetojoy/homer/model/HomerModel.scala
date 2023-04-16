@@ -2,7 +2,8 @@ package net.codetojoy.homer.model
 
 import scala.collection.mutable.ListBuffer
 
-class HomerModel(var linksList: List[Links] = List()) {
+class HomerModel(var linkGroups: List[LinkGroup] = List()) {
+    // return non-empty lines, trimmed
     def readFile(filename: String): Seq[String] = {
         val bufferedSource = io.Source.fromFile(filename)
         val lines = (for (line <- bufferedSource.getLines()) yield line).toList.filter(!_.trim().isEmpty()).map(_.trim())
@@ -12,7 +13,7 @@ class HomerModel(var linksList: List[Links] = List()) {
 
     def build(inFilename: String): Unit = {
         var currentLinks = new ListBuffer[Link]()
-        var currentLinkList = new ListBuffer[Links]()
+        var currentLinkGroups = new ListBuffer[LinkGroup]()
         var header = ""
         val lines = readFile(inFilename)
 
@@ -23,8 +24,8 @@ class HomerModel(var linksList: List[Links] = List()) {
             if (numTokens == 1) {
                 val isFirst = (header.isEmpty())
                 if (!isFirst) {
-                    val newLinks = Links(header, currentLinks.toList)
-                    currentLinkList += newLinks
+                    val linkGroup = LinkGroup(header, currentLinks.toList)
+                    currentLinkGroups += linkGroup
                 }
                 header = tokens(0)
                 currentLinks = new ListBuffer[Link]()
@@ -37,8 +38,8 @@ class HomerModel(var linksList: List[Links] = List()) {
                 throw new IllegalStateException("internal error: # tokens: " + numTokens)
             }
         }
-        val newLinks = Links(header, currentLinks.toList)
-        currentLinkList += newLinks
-        linksList = currentLinkList.toList
+        val linkGroup = LinkGroup(header, currentLinks.toList)
+        currentLinkGroups += linkGroup
+        linkGroups = currentLinkGroups.toList
     }
 }

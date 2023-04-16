@@ -17,19 +17,21 @@ class HomerModel(var linksList: List[Links] = List()) {
         var currentLinks = new ListBuffer[Link]()
         var currentLinkList = new ListBuffer[Links]()
         var header = ""
-        var isFirst = true
+        // var isFirst = true
         val lines = readFile(inFilename)
 
         for (line <- lines) {
             val tokens = line.trim().split(",")
             val numTokens = tokens.length
+
             if (numTokens == 1) {
+                val isFirst = (header.isEmpty())
                 if (!isFirst) {
                     val newLinks = Links(header, currentLinks.toList)
                     currentLinkList += newLinks
                 }
-                isFirst = false
                 header = tokens(0)
+                // isFirst = false
                 currentLinks = new ListBuffer[Link]()
             } else if (numTokens == 2) {
                 var name = tokens(0)

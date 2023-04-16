@@ -7,8 +7,8 @@ import java.io._
 import play.twirl.api._
 
 object Main extends App {
-    if (args.length == 0) {
-        println("requires links.txt file")
+    if (args.length < 2) {
+        println("requires: links.txt index.html")
     }
     val inFilename = args(0)
     val outFilename = args(1)

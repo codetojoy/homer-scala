@@ -2,4 +2,4 @@
 
 set -e
 
-sbt "run ./links.txt"
+sbt "run ./links.txt ./index.html"

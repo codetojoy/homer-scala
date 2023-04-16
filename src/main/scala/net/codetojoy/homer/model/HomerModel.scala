@@ -31,10 +31,10 @@ class HomerModel(var linksList: List[Links] = List()) {
                 isFirst = false
                 header = tokens(0)
                 currentLinks = new ListBuffer[Link]()
-                // currentLinks = Links(header, List())
-                // linksList.add(currentLinks)
             } else if (numTokens == 2) {
-                val link = new Link(tokens(0), tokens(1))
+                var name = tokens(0)
+                var href = tokens(1)
+                val link = new Link(href, name)
                 currentLinks += link
             } else {
                 throw new IllegalStateException("internal error: # tokens: " + numTokens)
@@ -43,10 +43,5 @@ class HomerModel(var linksList: List[Links] = List()) {
         val newLinks = Links(header, currentLinks.toList)
         currentLinkList += newLinks
         linksList = currentLinkList.toList
-        /*
-        val link1 = new Link("https://peidevs.github.io", "Home")
-        val link2 = new Link("https://github.com/peidevs/Event_Resources/blob/master/MeetUps.md", "Announcements")
-        linksList = List(new Links("PEI Devs", List(link1, link2)))
-        */
     }
 }

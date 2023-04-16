@@ -1,14 +1,11 @@
 package net.codetojoy.homer.model
 
-// import java.io._
-// import java.nio._
-// import java.nio.file._
 import scala.collection.mutable.ListBuffer
 
 class HomerModel(var linksList: List[Links] = List()) {
     def readFile(filename: String): Seq[String] = {
         val bufferedSource = io.Source.fromFile(filename)
-        val lines = (for (line <- bufferedSource.getLines()) yield line).toList.filter(!_.trim().isEmpty())
+        val lines = (for (line <- bufferedSource.getLines()) yield line).toList.filter(!_.trim().isEmpty()).map(_.trim())
         bufferedSource.close
         lines
     }
@@ -17,11 +14,10 @@ class HomerModel(var linksList: List[Links] = List()) {
         var currentLinks = new ListBuffer[Link]()
         var currentLinkList = new ListBuffer[Links]()
         var header = ""
-        // var isFirst = true
         val lines = readFile(inFilename)
 
         for (line <- lines) {
-            val tokens = line.trim().split(",")
+            val tokens = line.split(",")
             val numTokens = tokens.length
 
             if (numTokens == 1) {
@@ -31,7 +27,6 @@ class HomerModel(var linksList: List[Links] = List()) {
                     currentLinkList += newLinks
                 }
                 header = tokens(0)
-                // isFirst = false
                 currentLinks = new ListBuffer[Link]()
             } else if (numTokens == 2) {
                 var name = tokens(0)

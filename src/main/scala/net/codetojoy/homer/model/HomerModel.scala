@@ -12,8 +12,7 @@ class HomerModel(var linkGroups: List[LinkGroup] = List()) {
     }
 
     def build(inFilename: String): Unit = {
-        var currentLinks = new ListBuffer[Link]()
-        var currentLinkGroups = new ListBuffer[LinkGroup]()
+        val collector = new Collector()
         var header = ""
         val lines = readFile(inFilename)
 
@@ -22,24 +21,17 @@ class HomerModel(var linkGroups: List[LinkGroup] = List()) {
             val numTokens = tokens.length
 
             if (numTokens == 1) {
-                val isFirst = (header.isEmpty())
-                if (!isFirst) {
-                    val linkGroup = LinkGroup(header, currentLinks.toList)
-                    currentLinkGroups += linkGroup
-                }
+                collector.newLinkGroup(header)
                 header = tokens(0)
-                currentLinks = new ListBuffer[Link]()
             } else if (numTokens == 2) {
                 var name = tokens(0)
                 var href = tokens(1)
-                val link = new Link(href, name)
-                currentLinks += link
+                collector.newLink(href, name)
             } else {
                 throw new IllegalStateException("internal error: # tokens: " + numTokens)
             }
         }
-        val linkGroup = LinkGroup(header, currentLinks.toList)
-        currentLinkGroups += linkGroup
-        linkGroups = currentLinkGroups.toList
+        collector.newLinkGroup(header)
+        linkGroups = collector.currentLinkGroups.toList
     }
 }

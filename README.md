@@ -21,10 +21,10 @@ An example of Homer (website bookmarks) in Scala 2.
 
 ```
 $ java --version
-openjdk 11.0.2 2019-01-15
+openjdk 11.0.19 2023-04-18 LTS
 $ scala --version
-Scala code runner version 3.2.2
-$ sbt --version
-sbt version in this project: 1.5.4
+sbScala code runner version 3.3.1 -- Copyright 2002-2023, LAMP/EPFL
+t$ sbt --version
+sbt version in this project: 1.9.6
 sbt script version: 1.7.3
 ```

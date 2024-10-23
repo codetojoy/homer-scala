@@ -24,11 +24,10 @@
                 $( this ).unbind( "mouseover", jQuery.event.special.hoverintent.handler );
             },
             handler: function( event ) {
-                var currentX, currentY, timeout,
-                args = arguments,
-                target = $( event.target ),
-                previousX = event.pageX,
-                previousY = event.pageY;
+                let currentX, currentY, timeout;
+                const target = $( event.target );
+                let previousX = event.pageX;
+                let previousY = event.pageY;
 
                 function track( event ) {
                     currentX = event.pageX;
@@ -43,8 +42,9 @@
                 }
 
                 function handler() {
-                    var prop,
-                    orig = event;
+                    let prop;
+                    const orig = event;
+
                     if ( ( Math.abs( previousX - currentX ) +
                         Math.abs( previousY - currentY ) ) < 7 ) {
                         clear();
@@ -59,12 +59,12 @@
                         // usable (#6028)
                         delete event.originalEvent;
                         target.trigger( event );
-                        } else {
+                    } else {
                         previousX = currentX;
                         previousY = currentY;
                         timeout = setTimeout( handler, 100 );
-                        }
                     }
+                }
                     timeout = setTimeout( handler, 100 );
                     target.bind({
                         mousemove: track,

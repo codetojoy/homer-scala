@@ -10,6 +10,7 @@ An example of Homer (website bookmarks) in Scala 2.
 * edit `links.txt` with websites
 * `./refresh.sh`
 * open `./index.html`
+* or `./scanner.sh` will act as a service and re-gen `index.html` on change to `links.txt`
 
 ### Todo
 

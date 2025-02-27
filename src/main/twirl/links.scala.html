@@ -3,12 +3,16 @@
 @(model: HomerModel)
 
 @main {
+    <div class="my-items">
     @for(linkGroup <- model.linkGroups) {
-        <h3><a href="#">@linkGroup.header</a></h3>
-        <div>
-        @for(link <- linkGroup.links) {
-            <a class="link" href="@link.href">@link.name</a> <br />
-        }
-        </div>
+            <div class="my-item">
+                <h3>@linkGroup.header</h3>
+                <div>
+                    @for(link <- linkGroup.links) {
+                        <a class="link" href="@link.href">@link.name</a> <br />
+                    }
+                </div>
+            </div>
     }
+    </div>
 }

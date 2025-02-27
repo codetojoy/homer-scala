@@ -1,9 +1,10 @@
+@(content: play.twirl.api.Html) 
 
 <html>
 <head>
-    <script type="text/javascript" src="HOMER_JQUERY"></script>
-    <script type="text/javascript" src="HOMER_JQUERY_UI"></script>
-    <link rel="stylesheet" href="HOMER_JQUERY_UI_CSS"></link>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/cupertino/jquery-ui.min.css"></link>
 
     <script>
         $(function() {
@@ -24,10 +25,11 @@
                 $( this ).unbind( "mouseover", jQuery.event.special.hoverintent.handler );
             },
             handler: function( event ) {
-                let currentX, currentY, timeout;
-                const target = $( event.target );
-                let previousX = event.pageX;
-                let previousY = event.pageY;
+                var currentX, currentY, timeout,
+                args = arguments,
+                target = $( event.target ),
+                previousX = event.pageX,
+                previousY = event.pageY;
 
                 function track( event ) {
                     currentX = event.pageX;
@@ -42,9 +44,8 @@
                 }
 
                 function handler() {
-                    let prop;
-                    const orig = event;
-
+                    var prop,
+                    orig = event;
                     if ( ( Math.abs( previousX - currentX ) +
                         Math.abs( previousY - currentY ) ) < 7 ) {
                         clear();
@@ -59,12 +60,12 @@
                         // usable (#6028)
                         delete event.originalEvent;
                         target.trigger( event );
-                    } else {
+                        } else {
                         previousX = currentX;
                         previousY = currentY;
                         timeout = setTimeout( handler, 100 );
+                        }
                     }
-                }
                     timeout = setTimeout( handler, 100 );
                     target.bind({
                         mousemove: track,
@@ -76,7 +77,7 @@
 </head>
 <body>
 <div id="accordion">
-HOMER_BODY
+@content
 </div>
 </body>
 </html>
